@@ -1,0 +1,211 @@
+body.home-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ffd6e8, #fff1dc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.home-container {
+  background: white;
+  padding: 60px;
+  border-radius: 30px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.home-container h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 48px;
+  color: #ff5b87;
+  margin-bottom: 10px;
+}
+
+.home-container p {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 25px;
+  background-color: #ff7ca8;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background-color: #ff4e89;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #ffe5f0;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-family: 'Dancing Script', cursive;
+  font-size: 26px;
+  color: #d63384;
+}
+
+.nav-links a {
+  margin-left: 20px;
+  color: #c2185b;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background-color: #fff0f5;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  color: #555;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+}
+
+
+
+
+
+/* Login Page */
+body.login-body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ffe0eb, #fff5e6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.form-container {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.form-container h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #d43f8d;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff69a6;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff3f89;
+}
+
+a {
+  color: #c73379;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+/* Dashboard Page */
+textarea {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 15px 0;
+  background-color: #fff6fa;
+  resize: none;
+}
+
+#entries {
+  margin-top: 30px;
+}
+
+.entry {
+  background: #fff;
+  border-left: 5px solid #ff69a6;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.05);
+}
+
+.entry p {
+  margin: 0;
+  color: #333;
+}
+
+
+.entry {
+  background: #fff0f5;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 0 5px #e3a4c0;
+  position: relative;
+}
+.entry button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff6666;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}

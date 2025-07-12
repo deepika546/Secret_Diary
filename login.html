@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login – My Secret Diary 💖</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+  <nav class="navbar">
+    <div class="logo">📓 My Secret Diary</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+      <a href="signup.html">Signup</a>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <h2>🔐 Welcome to My Secret Diary 💖</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Enter your username" required />
+      <input type="password" id="password" placeholder="Enter your password" required />
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="signup.html">Create one</a></p>
+    </form>
+  </div>
+
+  <footer class="footer">
+    <p>Made with 💖 by Deepika Wasure | © 2025</p>
+  </footer>
+
+  <script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  fetch("http://localhost:8080/api/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ username, password })
+  })
+  .then(response => response.json())
+  .then(success => {
+    if (success === true) {
+      alert("Login Successful!");
+      window.location.href = "diary.html";
+    } else {
+      alert("Invalid username or password.");
+    }
+  })
+  .catch(error => {
+    alert("Something went wrong.");
+    console.error("Login error:", error);
+  });
+});
+
+  </script>
+</body>
+</html>

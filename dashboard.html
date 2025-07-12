@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard – My Secret Diary 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #ffe6f0, #ffe0ec);
+      color: #444;
+    }
+    .navbar {
+      background-color: #ffb6c1;
+      padding: 15px 0px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar .logo {
+      font-family: 'Dancing Script', cursive;
+      font-size: 28px;
+    }
+    .navbar a {
+      margin-left: 20px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .dashboard {
+      max-width: 700px;
+      margin: 50px auto;
+      background-color: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    textarea, input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .entry {
+      background: #fff0f5;
+      border-left: 5px solid #ff69b4;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ffd1dc;
+    }
+    .entry h4 {
+      margin: 0 0 5px;
+      font-weight: 600;
+      color: #c71585;
+    }
+    .entry p {
+      margin: 0 0 10px;
+    }
+    .entry button {
+      background-color: #f08080;
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #888;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">📓 My Secret Diary</div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="login.html">Logout</a>
+    </div>
+  </nav>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <h2>Welcome Deepika 💖</h2>
+    <p>Write something from your heart...</p>
+
+    <form id="entryForm">
+      <input type="text" id="titleInput" placeholder="Title of your secret..." required />
+      <textarea id="messageInput" placeholder="Dear Diary..." rows="5" required></textarea>
+      <button type="submit">💾 Save Entry</button>
+    </form>
+
+    <div id="entries">Loading your secrets... 💌</div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Made with 💖 by Deepika Wasure | © 2025
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    const form = document.getElementById('entryForm');
+    const entriesDiv = document.getElementById('entries');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('titleInput').value.trim();
+      const message = document.getElementById('messageInput').value.trim();
+
+      if (!title || !message) {
+        alert("Please fill in both title and message 💬");
+        return;
+      }
+
+      const entry = {
+        title,
+        message,
+        date: new Date().toLocaleDateString()
+      };
+
+      fetch('http://localhost:8080/api/secretdiary', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(entry)
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert("Your secret has been saved 💖");
+        form.reset();
+        loadEntries();
+      })
+      .catch(error => console.error("Error:", error));
+    });
+
+    function loadEntries() {
+      fetch('http://localhost:8080/api/secretdiary')
+        .then(res => res.json())
+        .then(entries => {
+          entriesDiv.innerHTML = '';
+          entries.reverse().forEach(entry => {
+            const entryDiv = document.createElement('div');
+            entryDiv.className = 'entry';
+            entryDiv.innerHTML = `
+              <h4>${entry.title}</h4>
+              <p>${entry.message}</p>
+              <small>${entry.date}</small><br>
+              <button onclick="deleteEntry(${entry.id})">🗑 Delete</button>
+            `;
+            entriesDiv.appendChild(entryDiv);
+          });
+        });
+    }
+
+    function deleteEntry(id) {
+      fetch(`http://localhost:8080/api/secretdiary/${id}`, {
+        method: 'DELETE'
+      }).then(() => {
+        alert("Secret deleted 💔");
+        loadEntries();
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', loadEntries);
+  </script>
+
+</body>
+</html>
